@@ -100,4 +100,30 @@ to also disable default nginx currently configured  to listen on port 80, run
 
 sudo unlink /etc/nginx/sites-enabled/default
 
+the new website is now active but the web root /var/www/projectlemp is still empty. to test that our new server block works, create an index.html file in that location
+
+run: sudo echo 'Hello LEMP from hostname' $(curl -s http://169.254.169.254/latest/meta-data/public-hostname) 'with public IP' $(curl -s http://169.254.169.254/latest/meta-data/public-ipv4) > /var/www/projectLEMP/index.html
+
+projectLEMP.png
+
+this is what you see when you open on a browser 
+
+helloLEMP.png 
+
+The LAMP stack is now completely installed and fully operational.
+
+to test and to validate that nginx can correctly hand .php files off to our new PHP processor, create a test PHP  file in your document root. 
+
+open a new file called info.php within your document root in your text editor, run:
+
+sudo nano /var/www/projectLEMP/info.php
+
+type the following lines into the new file : <?php
+phpinfo();
+
+the page can now be accessed in your web browser by visiting the domain name;
+
+http://`server_domain_or_IP`/info.php
+
+phpversion.png 
 
