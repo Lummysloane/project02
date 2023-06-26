@@ -22,15 +22,29 @@ nginx.png
 
 Now that there is a webserver running, we need to install  database Management System 
 
-To install DBMS, MySQL will be used for this project. to install mysql server run the below <command>
+To install DBMS, MySQL will be used for this project. to install mysql server run the below command
     
 sudo apt install mysql-server    
 
-After the installation, log into MySql with the below <command>
+After the installation, log into MySql with the below command
 
 sudo mysql    
 
 This will connect to the MySQL server as the administrative database userrRoot
 
 mysql.png
+
+it is recommended to run a security script that comes pre-installed with MySQL
+
+You will need a password for the root user before running the script. 
+
+run: ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'PassWord.1';
+
+to test the password and to be sure you are able to log in run the below command
+
+sudo mysql -p 
+
+mysql -p.png 
+
+
 
