@@ -127,3 +127,28 @@ http://`server_domain_or_IP`/info.php
 
 phpversion.png 
 
+connect to MySql console to create a test database with simple 'to do list' and configure access to it
+
+run: sudo mysql
+
+to create a new database, run:
+
+mysql> CREATE DATABASE `example_database`;
+
+the command below creates a new user name by using myswl_native_password as default authentication method
+
+mysql>  CREATE USER 'example_user'@'%' IDENTIFIED WITH mysql_native_password BY 'password';
+
+to test if the new user has the proper permission, run: 
+
+mysql -u example_user -p
+
+after loging into MySQL, confirm that you have access to the example_database by running the below command: 
+
+mysql> SHOW DATABASES;
+
+projectlempinfo.png 
+
+database1.png 
+
+database2.png 
