@@ -46,5 +46,58 @@ sudo mysql -p
 
 mysql -p.png 
 
+Apache embeds the PHP interpreter in each request. php-fpm will need to be installed. This will communicate with MySql-based databeses.
+
+to install the packages, run:
+
+sudo apt install php-fpm php-mysql
+
+nginx-php.png
+
+On ubuntu 20.04, nginx has one server block enabled and is configure to serve documents out of a directory at /var/www/html.
+
+to create the root web directory for your_domain
+
+run: sudo mkdir /var/www/projectLEMP
+
+there is need to assign ownership of the directory with the $USER environment variable. to do that run:
+
+sudo nano /etc/nginx/sites-available/projectLEMP
+
+This will create a new blank file. paste the folowing configuration
+
+server {
+    listen 80;
+    server_name projectLEMP www.projectLEMP;
+    root /var/www/projectLEMP;
+
+    index index.html index.htm index.php;
+
+    location / {
+        try_files $uri $uri/ =404;
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php8.1-fpm.sock;
+     }
+
+    location ~ /\.ht {
+        deny all;
+    }
+
+}
+
+Activate the configuration by linking to the config file from nginx's sites-enabled. run:
+
+sudo ln -s /etc/nginx/sites-available/projectLEMP /etc/nginx/sites-enabled/
+
+to test the configuration for syntax error run:
+
+sudo nginx -t
+
+to also disable default nginx currently configured  to listen on port 80, run 
+
+sudo unlink /etc/nginx/sites-enabled/default
 
 
